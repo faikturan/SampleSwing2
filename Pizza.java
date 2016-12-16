@@ -46,10 +46,12 @@ public class Pizza extends JFrame {
 		sizePanel.add(buyuk);
 		sizeGroup.add(buyuk);
 		
+		mainPanel.add(sizePanel);
+		
 		JPanel ekstraPanel = new JPanel();
 		
 		Border b2 = BorderFactory.createTitledBorder("Ekstralar");
-		sizePanel.setBorder(b2);
+		ekstraPanel.setBorder(b2);
 		
 		peynir = new JCheckBox("Peynir");
 		ekstraPanel.add(peynir);
@@ -61,6 +63,12 @@ public class Pizza extends JFrame {
 		ekstraPanel.add(mantar);
 		
 		mainPanel.add(ekstraPanel);
+		
+		buttonOK = new JButton("Tamam");
+		buttonOK.addActionListener(e->buttonOKClick());
+		mainPanel.add(buttonOK);
+		this.add(mainPanel);
+		this.setVisible(true);
 	}
 	
 	public void buttonOKClick(){
@@ -87,7 +95,10 @@ public class Pizza extends JFrame {
 		+ekstralar;
 		JOptionPane.showMessageDialog(buttonOK, msg, 
 				"Sipariþiniz", JOptionPane.INFORMATION_MESSAGE);
-			
+		peynir.setSelected(false);
+		salam.setSelected(false);
+		mantar.setSelected(false);
+		kucuk.setSelected(true);
 	}
 
 }
