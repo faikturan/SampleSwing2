@@ -28,6 +28,10 @@ public class ImageIO extends JFrame {
 		
 		JPanel buttonPanel = new JPanel();
 		getPictureButton = new JButton("Resim Seç");
+		getPictureButton.addActionListener(e->getPictureButtonClick());
+		buttonPanel.add(getPictureButton);
+		this.add(buttonPanel, BorderLayout.SOUTH);
+		this.setVisible(true);
 		
 	}
 	
@@ -51,15 +55,17 @@ public class ImageIO extends JFrame {
 	public String getImageFile(){
 		JFileChooser fc = new JFileChooser();
 		fc.setFileFilter(new ImageFilter());
+		int result = fc.showOpenDialog(null);
+		File file = null;
+		if (result == JFileChooser.APPROVE_OPTION) {
+			file = fc.getSelectedFile();
+			return file.getPath();
+		}
+		else
 		return null;
-		
-		
 	}
 	
 	private class ImageFilter extends FileFilter{
-
-		
-		
 		@Override
 		public boolean accept(File f) {
 			if (f.isDirectory()) 
